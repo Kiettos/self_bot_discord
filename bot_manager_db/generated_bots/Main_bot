@@ -1,0 +1,29 @@
+from news_bot import DiscordAgent
+from reply_bot import ReplyBot
+import asyncio
+
+agent = DiscordAgent(
+    user_token="...",
+    groq_key="...",
+    channel_id=123456,
+    guild_id=1324235,
+    rss_urls=["https://vnexpress.net/rss/tin-moi-nhat.rss"],
+    keywords=["AI", "công nghệ"]
+)
+
+bot = ReplyBot(
+    user_token="...",
+    groq_key="...",
+    dataset_path="data.txt",
+    allowed_guilds=[1280157785417322557],
+    allowed_channels=[1282669208777265248],
+    keywords=[],
+)
+
+async def main():
+    await asyncio.gather(
+        agent.start(agent.user_token),
+        bot.start(bot.user_token),
+    )
+
+asyncio.run(main())
