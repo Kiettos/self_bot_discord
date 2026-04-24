@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from database import get_db # Import file kết nối database bạn đã làm ở bước trước
+import subprocess
+import os
+import signal
+import sys
+from fastapi import HTTPException
 
 app = FastAPI(title="Bot Manager API")
 
@@ -35,11 +40,7 @@ class BotConfig(BaseModel):
     
     
     
-    import subprocess
-import os
-import signal
-import sys
-from fastapi import HTTPException
+
 
 # --- API START BOT ---
 @app.post("/start/{bot_id}")
